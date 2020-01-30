@@ -1,2 +1,0 @@
-# MyCryptoApp
-MyCryptoApp
