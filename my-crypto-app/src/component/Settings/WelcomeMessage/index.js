@@ -12,9 +12,9 @@ const Title = styled.div`
 export default function ({firstVisit}) {
     return (
         <AppContext.Consumer>
-            {({firstVist}) =>
+            {({firstVisit}) =>
             firstVisit ? <div>
-                Welcome to CryptoDash, please select your favorite coins to begin. {' '}
+                Welcome to MyCriptoDApp, please select your favorite coins to begin. {' '}
             </div>: null} 
         </AppContext.Consumer>
     )
