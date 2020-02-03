@@ -4,6 +4,7 @@ import AppLayout from './AppLayout'
 import AppBar from '../AppBar'
 import {AppProvider} from '../AppProvider' // without default export
 import Settings from '../Settings'
+import Content from '../Content'
 
 class App extends Component {
   render() {
@@ -11,8 +12,11 @@ class App extends Component {
     return(
       <AppLayout>
         <AppProvider>
-          <AppBar />
+          <AppBar /> 
+          <Content> 
+          {/* loading content */}
           <Settings />
+          </Content>
         </AppProvider>
       </AppLayout>
     )
