@@ -1,21 +1,14 @@
 import React from 'react'
-import styled from 'styled-components'
 import { AppContext } from '../../AppProvider'
 
-const Title = styled.div`
-    text-align: center;
-    margin: 3rem 0;
-    font-size: 2.5rem;
-`
 
-
-export default function ({firstVisit}) {
+export default function ({}) {
     return (
         <AppContext.Consumer>
             {({firstVisit}) =>
             firstVisit ? <div>
-                Welcome to MyCriptoDApp, please select your favorite coins to begin. {' '}
-            </div>: null} 
+                Welcome to MyCriptoDApp, please select your favorite coins to begin. {' '} {firstVisit}
+            </div>: <div>no info</div>} 
         </AppContext.Consumer>
     )
 }

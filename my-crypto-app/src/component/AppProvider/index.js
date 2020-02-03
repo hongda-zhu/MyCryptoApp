@@ -9,8 +9,8 @@ export class AppProvider extends React.Component {
         super(props);
         this.state= {
             page:'dashboard',
-            ...this.savedSettings(), // spread the result of that over the rest of these previous properties here
             setPage: this.setPage,
+            ...this.savedSettings(), // spread the result of that over the rest of these previous properties here
             confirmFavorites: this.confirmFavorites
         }
         
@@ -28,10 +28,11 @@ export class AppProvider extends React.Component {
     confirmFavorites = () => {
         this.setState({
             firstVisit: false,
-            page: 'dashboard'
+            page: 'dashboard',
         })
         localStorage.setItem('cryptoDash', JSON.stringify({
-            test: 'hello'
+            test: 'hello',
+            
         }))
     }
 

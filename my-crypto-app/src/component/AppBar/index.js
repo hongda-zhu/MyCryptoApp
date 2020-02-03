@@ -15,10 +15,10 @@ const Bar = styled.div`
 const ControlButtonElem = styled.div`
     cursor: pointer;
     ${props => props.active && css `
-        text-shadow: 0px 0px 60px #03ff03;
+        text-shadow: 0px 0px 60px red;
     `}
 `
-function ControButton({name}){
+function ControlButton({name}){
     return (
         <AppContext.Consumer>
             {({page, setPage}) => (
@@ -33,6 +33,12 @@ function ControButton({name}){
     )
 }
 
+// function ControlButton({name, active}) {
+//     return (
+//         <ControlButtonElem active={active}>{name}</ControlButtonElem>
+//     )
+// }
+
 function toProperCase(lower){
     return lower.charAt(0).toUpperCase() + lower.substr(1)
 }
@@ -42,8 +48,8 @@ export default function(){
 
         <Logo> MyCryptoApp </Logo>
         <div/>
-        <ControButton name="Dashboard" active></ControButton>
-        <ControButton name="Settings" active></ControButton>
+        <ControlButton name="dashboard" active></ControlButton>
+        <ControlButton name="settings" active></ControlButton>
         
     </Bar>
 }

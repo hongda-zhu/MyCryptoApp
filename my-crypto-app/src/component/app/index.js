@@ -1,12 +1,9 @@
 import React, {Component} from 'react'
 import './App.css';
-// import { render } from 'react-dom';
-// import { func } from 'prop-types';
-import WelcomeMessage from '../Settings/WelcomeMessage'
-import Settings from '../Settings'
 import AppLayout from './AppLayout'
 import AppBar from '../AppBar'
 import {AppProvider} from '../AppProvider' // without default export
+import Settings from '../Settings'
 
 class App extends Component {
   render() {
