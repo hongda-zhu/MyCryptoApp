@@ -1,8 +1,11 @@
 import React from 'react';
+import _ from 'lodash'
+
+export const AppContext = React.createContext()
 
 const cc = require('cryptocompare')
 
-export const AppContext = React.createContext()
+const MAX_FAVORITES = 10;
 
 export class AppProvider extends React.Component {
     constructor(props){
@@ -10,20 +13,28 @@ export class AppProvider extends React.Component {
         this.state= {
             page:'dashboard',
             setPage: this.setPage,
+            favorites: ['BTC', 'ETH', 'XMR', 'DOGE'],
             ...this.savedSettings(), // spread the result of that over the rest of these previous properties here
+            addCoin: this.addCoin,
+            removeCoin: this.removeCoin,
+            isInFavorites: this.isInFavorites,
             confirmFavorites: this.confirmFavorites
         }
         
     }
+
+    // fetch coins 
 
     componentDidMount = () => {
         this.fetchCoins();
     }
 
     fetchCoins = async () => {
-        let coinList = (await cc.coinList()).Data;
+        let coinList = (await cc.coinList()).Data; // key one
         this.setState({coinList})
     }
+
+    // switch pages => using firstVisit props
 
     confirmFavorites = () => {
         this.setState({
@@ -31,8 +42,7 @@ export class AppProvider extends React.Component {
             page: 'dashboard',
         })
         localStorage.setItem('cryptoDash', JSON.stringify({
-            test: 'hello',
-            
+            favorites: this.state.favorites
         }))
     }
 
@@ -41,10 +51,34 @@ export class AppProvider extends React.Component {
         if (!cryptoDashData) {
             return{page:'settings', firstVisit: true}
         }
-        return{};
+        let {favorites} = cryptoDashData; // save favorites in localstorage, if there has no item get the default one
+        return{favorites};
     }
 
     setPage = page => this.setState({page})
+
+    // add && remove && check is in favorites 
+
+    addCoin = key => {
+        let favorites = [...this.state.favorites]; // grab all favorites => spread operator makes copy of the array
+
+        if(favorites.length < MAX_FAVORITES){
+            favorites.push(key);
+            this.setState({favorites}); // condition if favorites array is lower than 10
+        }
+    }
+
+    
+    removeCoin = key => {
+        let favorites = [...this.state.favorites]; 
+
+        this.setState({favorites: _.pull(favorites, key)}) //
+    }
+
+    isInFavorites = key =>  _.includes(this.state.favorites, key)
+
+
+
 
     render(){
         return(
