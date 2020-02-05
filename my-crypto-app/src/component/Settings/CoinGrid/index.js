@@ -7,7 +7,7 @@ export const CoinGridStyled = styled.div `
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
     grid-gap: 15px;
-    margin-top: 5px
+    margin-top: 5px;
 `
 
 function getCoinsToDisplay(coinList, topSection, favorites) {
