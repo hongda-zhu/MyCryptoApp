@@ -10,8 +10,14 @@ export const CoinGridStyled = styled.div `
     margin-top: 5px;
 `
 
-function getCoinsToDisplay(coinList, topSection, favorites) {
-    return topSection ? favorites : Object.keys(coinList).slice(0, 100)
+// function to render coins => selected coins or default coins
+
+function getLowerSectionCoins(coinList, filterCoins){
+    return (filterCoins && Object.keys(filterCoins)) || Object.keys(coinList).slice(0, 100)
+}
+
+function getCoinsToDisplay(coinList, topSection, favorites, filterCoins) {
+    return topSection ? favorites : getLowerSectionCoins(coinList, filterCoins)
 }
 
 export default function({topSection}){

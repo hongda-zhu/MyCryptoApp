@@ -18,7 +18,8 @@ export class AppProvider extends React.Component {
             addCoin: this.addCoin,
             removeCoin: this.removeCoin,
             isInFavorites: this.isInFavorites,
-            confirmFavorites: this.confirmFavorites
+            confirmFavorites: this.confirmFavorites,
+            setFilteredCoins: this.setFilteredCoins
         }
         
     }
@@ -67,7 +68,6 @@ export class AppProvider extends React.Component {
             this.setState({favorites}); // condition if favorites array is lower than 10
         }
     }
-
     
     removeCoin = key => {
         let favorites = [...this.state.favorites]; 
@@ -77,8 +77,11 @@ export class AppProvider extends React.Component {
 
     isInFavorites = key =>  _.includes(this.state.favorites, key)
 
+    // Search
 
+    setFilteredCoins = (filteredCoins) => this.setState({filteredCoins}) // set coins
 
+ 
 
     render(){
         return(
