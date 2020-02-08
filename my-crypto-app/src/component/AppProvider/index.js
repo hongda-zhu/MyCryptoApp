@@ -79,9 +79,10 @@ export class AppProvider extends React.Component {
 
     // Search
 
-    setFilteredCoins = (filteredCoins) => this.setState({filteredCoins}) // set coins
+    setFilteredCoins = (filterCoins) => this.setState({filterCoins})
 
- 
+
+
 
     render(){
         return(
