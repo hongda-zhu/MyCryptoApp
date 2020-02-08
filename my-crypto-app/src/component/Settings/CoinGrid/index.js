@@ -12,18 +12,18 @@ export const CoinGridStyled = styled.div `
 
 // function to render coins => selected coins or default coins
 
-function getLowerSectionCoins(coinList, filterCoins){ 
-    return (filterCoins && Object.keys(filterCoins)) || Object.keys(coinList).slice(0, 100)
+function getLowerSectionCoins(coinList, filteredCoins){ 
+    return (filteredCoins && Object.keys(filteredCoins)) || Object.keys(coinList).slice(0, 100)
 }
 
-function getCoinsToDisplay(coinList, topSection, favorites, filterCoins) {
-    return topSection ? favorites : getLowerSectionCoins(coinList, filterCoins)
+function getCoinsToDisplay(coinList, topSection, favorites, filteredCoins) {
+    return topSection ? favorites : getLowerSectionCoins(coinList, filteredCoins)
 }
 
 export default function({topSection}){
     return <AppContext.Consumer>
-        {({coinList, favorites, filterCoins}) => <CoinGridStyled>
-            {getCoinsToDisplay(coinList, topSection, favorites, filterCoins).map(coinKey => 
+        {({coinList, favorites, filteredCoins}) => <CoinGridStyled>
+            {getCoinsToDisplay(coinList, topSection, favorites, filteredCoins).map(coinKey => 
             <CoinTile key={coinKey.FullName} topSection={topSection} coinKey={coinKey}/>)}
         </CoinGridStyled>}
     </AppContext.Consumer>

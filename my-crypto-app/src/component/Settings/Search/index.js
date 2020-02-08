@@ -50,7 +50,7 @@ const handleFilter = _.debounce((inputValue, coinList, setFilteredCoins) => {
 
 
 
-function filterCoins(e, coinList, setFilteredCoins){
+function filteredCoins(e, coinList, setFilteredCoins){
     
     let inputValue = e.target.value 
     handleFilter(inputValue, coinList, setFilteredCoins)
@@ -66,7 +66,7 @@ export default function() {
 
                 <SearchGrid>
                     <h2>Search</h2>
-                    <SearchInput onKeyUp={(e) => filterCoins(e, coinList, setFilteredCoins)} />
+                    <SearchInput onKeyUp={(e) => filteredCoins(e, coinList, setFilteredCoins)} />
                 </SearchGrid>
 
             }
