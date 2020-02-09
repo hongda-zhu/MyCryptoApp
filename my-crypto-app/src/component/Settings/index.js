@@ -7,7 +7,7 @@ import Search from './Search'
 
 export default function(){
 
-    return <Page name ="dashboard" >  
+    return <Page name ="settings" >  
         <CoinGrid topSection/>
         <WelcomeMessage/> 
         <ConfirmButton/>
