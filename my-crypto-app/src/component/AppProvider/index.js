@@ -18,7 +18,8 @@ export class AppProvider extends React.Component {
             removeCoin: this.removeCoin,
             isInFavorites: this.isInFavorites,
             confirmFavorites: this.confirmFavorites,
-            setFilteredCoins: this.setFilteredCoins
+            setFilteredCoins: this.setFilteredCoins,
+            setCurrentFavorites: this.setCurrentFavorites
         }
         
     }
@@ -60,14 +61,18 @@ export class AppProvider extends React.Component {
     // switch pages => using firstVisit props
 
     confirmFavorites = () => {
+        let currentFavorites = this.state.favorites[0]
+
         this.setState({
             firstVisit: false,
             page: 'dashboard',
+            currentFavorites, 
         }, () => {
             this.fetchPrices()
         })  
         localStorage.setItem('cryptoDash', JSON.stringify({
-            favorites: this.state.favorites
+            favorites: this.state.favorites,
+            currentFavorites
         }))
     }
 
@@ -76,8 +81,19 @@ export class AppProvider extends React.Component {
         if (!cryptoDashData) {
             return{page:'settings', firstVisit: true}
         }
-        let {favorites} = cryptoDashData; // save favorites in localstorage, if there has no item get the default one
-        return{favorites};
+        let {favorites, currentFavorites} = cryptoDashData; // save favorites in localstorage, if there has no item get the default one
+        return{favorites, currentFavorites};
+    }
+
+    setCurrentFavorites = (sym) => {
+        debugger
+        this.setState({
+            currentFavorites: sym
+        });
+        localStorage.setItem('cryptoDash', JSON.stringify({
+            ...JSON.parse(localStorage.getItem('cryptoDash')),
+            currentFavorites: sym
+        }))
     }
 
     setPage = page => this.setState({page})
