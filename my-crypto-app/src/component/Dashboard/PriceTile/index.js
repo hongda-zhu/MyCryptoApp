@@ -90,7 +90,6 @@ export default function ({price, index}){
     let sym = Object.keys(price)[0];
     let data = price[sym]['USD'];
     let TileClass = index < 5 ? PriceTile: PriceTileCompact
-    console.log(sym)
     return (
     
         <AppContext.Consumer>
